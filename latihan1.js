@@ -21,7 +21,7 @@ const kelasSchema = new Schema({
     }
 })
 
-const kelas = mongoose.model('Kelas', kelasSchema)
+const Kelas = mongoose.model('Kelas', kelasSchema)
 
 // const nodejs = new kelas({
 //     judul: 'nodejs',
@@ -36,14 +36,32 @@ const kelas = mongoose.model('Kelas', kelasSchema)
 //         console.log(err)
 //     })
 
-kelas.create({
-    judul: 'Vue js',
-    deskripsi: 'the progressive javaScript framework'
-})
-.then((data) => {
-    console.log(data)
-    console.log('successfully created class')
-})
-.catch((error) => {
-    console.log(error)
-})
+// Kelas.create({
+//     judul: 'Reactjs',
+//     deskripsi: 'the progressive javaScript framework'
+// })
+// .then((data) => {
+//     console.log(data)
+//     console.log('successfully created class')
+// })
+// .catch((error) => {
+//     console.log(error)
+// })
+
+// Kelas.findById("645d7c70713225f44b1bc983")
+//     .then((data)=>{
+//         console.log(data)
+//     })
+//     .catch((error)=>{
+//         console.log(error)
+//     })
+
+const query = Kelas.find({judul: /js/i})
+query.select('judul deskripsi')
+query.exec()
+    .then((data)=>{
+        console.log(data)
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
